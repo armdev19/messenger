@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".authentication.RegisterActivity">
+
+    <EditText
+        android:id="@+id/register_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_alignParentStart="true"
+        android:hint="Email..."
+        android:inputType="textEmailAddress"
+        android:drawableStart="@drawable/ic_email_gray_30dp"
+        android:background="@drawable/inputs"
+        android:padding="10dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
+        />
+
+    <EditText
+        android:id="@+id/register_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_email"
+        android:layout_alignParentStart="true"
+        android:hint="Password..."
+        android:inputType="textPassword"
+        android:drawableStart="@drawable/ic_lock_gray_30dp"
+        android:background="@drawable/inputs"
+        android:padding="10dp"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="10dp"
+        />
+
+
+
+    <Button
+        android:id="@+id/registration_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/register_password"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="19dp"
+        android:text="Create"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@drawable/buttons"/>
+
+    <TextView
+        android:id="@+id/phone_using"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registration_button"
+        android:text="Or Log In using your"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginTop="30dp"
+        android:textAlignment="center"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/colorPrimaryDark"/>
+
+    <Button
+        android:id="@+id/phone_registration_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phone_using"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginEnd="19dp"
+        android:text="Phone"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@drawable/buttons"
+        android:drawableStart="@drawable/ic_phone_android_gray_30dp"/>
+
+</RelativeLayout>
