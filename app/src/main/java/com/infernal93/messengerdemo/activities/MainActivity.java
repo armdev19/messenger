@@ -172,6 +172,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        updateUserStatus("online");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        updateUserStatus("offline");
+    }
+
+    @Override
     protected void onStop() {
         super.onStop();
 
@@ -203,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 if ((dataSnapshot.child("name").exists())) {
-                    Toast.makeText(MainActivity.this, "Welcome back to Messenger", Toast.LENGTH_SHORT).show();
+
                 } else {
                     sendUserToUserSettingsActivity();
                 }

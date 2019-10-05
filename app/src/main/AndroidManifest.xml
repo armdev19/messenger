@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -16,18 +17,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activities.ChatActivity">
+        <activity
+            android:name=".activities.ChatActivity"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".activities.ProfileActivity">
+        <activity
+            android:name=".activities.ProfileActivity"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
             android:name=".activities.FindFriendsActivity"
-            android:parentActivityName=".activities.MainActivity">
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".authentication.PhoneLoginActivity">
+        <activity
+            android:name=".authentication.PhoneLoginActivity"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity
@@ -37,22 +45,28 @@
         <activity android:name=".activities.SettingsActivity" />
         <activity
             android:name=".activities.UserSettingsActivity"
-            android:parentActivityName=".activities.MainActivity">
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
 
         </activity>
         <activity android:name=".authentication.RegisterActivity" />
-        <activity android:name=".authentication.LoginActivity">
+        <activity
+            android:name=".authentication.LoginActivity"
+            android:screenOrientation="portrait">
+
+
+        </activity>
+
+
+        <activity
+            android:name=".activities.MainActivity"
+            android:screenOrientation="portrait">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-
-
-        <activity android:name=".activities.MainActivity">
 
         </activity>
     </application>

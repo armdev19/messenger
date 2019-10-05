@@ -128,13 +128,13 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             if (fromUserID.equals(messageSenderId)) {
 
                 holder.messageSenderPicture.setVisibility(View.VISIBLE);
-                Picasso.get().load(messages.getMessage()).into(holder.messageSenderPicture);
+                Picasso.get().load(messages.getMessage()).placeholder(R.drawable.ic_image_send).into(holder.messageSenderPicture);
 
             } else {
 
                 holder.receiverProfileImage.setVisibility(View.VISIBLE);
                 holder.messageReceiverPicture.setVisibility(View.VISIBLE);
-                Picasso.get().load(messages.getMessage()).into(holder.messageReceiverPicture);
+                Picasso.get().load(messages.getMessage()).placeholder(R.drawable.ic_image_send).into(holder.messageReceiverPicture);
             }
         }  else if (fromMessageType.equals("pdf")) {
 
@@ -156,7 +156,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
                 holder.receiverProfileImage.setVisibility(View.VISIBLE);
                 holder.messageReceiverPicture.setVisibility(View.VISIBLE);
-                holder.messageReceiverPicture.setBackgroundResource(R.drawable.ic_file);
+                holder.messageReceiverPicture.setBackgroundResource(R.drawable.ic_pdf_file);
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -187,7 +187,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
                 holder.receiverProfileImage.setVisibility(View.VISIBLE);
                 holder.messageReceiverPicture.setVisibility(View.VISIBLE);
-                holder.messageReceiverPicture.setBackgroundResource(R.drawable.ic_file);
+                holder.messageReceiverPicture.setBackgroundResource(R.drawable.ic_docx_file);
 
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override

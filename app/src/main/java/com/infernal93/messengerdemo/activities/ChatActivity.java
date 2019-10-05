@@ -205,6 +205,7 @@ public class ChatActivity extends AppCompatActivity {
         });
 
         displayLastSeen();
+        addMessages();
     }
 
     @Override
@@ -396,9 +397,52 @@ public class ChatActivity extends AppCompatActivity {
                 });
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+
+    private void sendMessage() {
+        String messageText = messageInputText.getText().toString();
+
+        if (TextUtils.isEmpty(messageText)) {
+
+            Toast.makeText(this, "first write your message...", Toast.LENGTH_SHORT).show();
+
+        } else {
+
+            String messageSenderRef = "Messages/" + messageSenderID + "/" + messageReceiverID;
+            String messageReceiverRef = "Messages/" + messageReceiverID + "/" + messageSenderID;
+
+            DatabaseReference userMessageKeyRef = rootRef.child("Messages")
+                    .child(messageSenderID).child(messageReceiverID).push();
+
+            String messagePushID = userMessageKeyRef.getKey();
+
+            Map messageTextBody = new HashMap();
+            messageTextBody.put("message", messageText);
+            messageTextBody.put("type", "text");
+            messageTextBody.put("from", messageSenderID);
+            messageTextBody.put("to", messageReceiverID);
+            messageTextBody.put("messageID", messagePushID);
+            messageTextBody.put("time", saveCurrentTime);
+            messageTextBody.put("date", saveCurrentDate);
+
+            Map messageBodyDetails = new HashMap();
+            messageBodyDetails.put(messageSenderRef + "/" + messagePushID, messageTextBody);
+            messageBodyDetails.put(messageReceiverRef + "/" + messagePushID, messageTextBody);
+
+            rootRef.updateChildren(messageBodyDetails).addOnCompleteListener(new OnCompleteListener() {
+                @Override
+                public void onComplete(@NonNull Task task) {
+                    if (task.isSuccessful()) {
+                       // Toast.makeText(ChatActivity.this, "Message Sent Successfully...", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(ChatActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
+                    messageInputText.setText("");
+                }
+            });
+        }
+    }
+
+    private void addMessages() {
 
         rootRef.child("Messages").child(messageSenderID).child(messageReceiverID)
                 .addChildEventListener(new ChildEventListener() {
@@ -435,52 +479,6 @@ public class ChatActivity extends AppCompatActivity {
 
                     }
                 });
-
-
-    }
-
-    private void sendMessage() {
-        String messageText = messageInputText.getText().toString();
-
-        if (TextUtils.isEmpty(messageText)) {
-
-            Toast.makeText(this, "first write your message...", Toast.LENGTH_SHORT).show();
-
-        } else {
-
-            String messageSenderRef = "Messages/" + messageSenderID + "/" + messageReceiverID;
-            String messageReceiverRef = "Messages/" + messageReceiverID + "/" + messageSenderID;
-
-            DatabaseReference userMessageKeyRef = rootRef.child("Messages")
-                    .child(messageSenderID).child(messageReceiverID).push();
-
-            String messagePushID = userMessageKeyRef.getKey();
-
-            Map messageTextBody = new HashMap();
-            messageTextBody.put("message", messageText);
-            messageTextBody.put("type", "text");
-            messageTextBody.put("from", messageSenderID);
-            messageTextBody.put("to", messageReceiverID);
-            messageTextBody.put("messageID", messagePushID);
-            messageTextBody.put("time", saveCurrentTime);
-            messageTextBody.put("date", saveCurrentDate);
-
-            Map messageBodyDetails = new HashMap();
-            messageBodyDetails.put(messageSenderRef + "/" + messagePushID, messageTextBody);
-            messageBodyDetails.put(messageReceiverRef + "/" + messagePushID, messageTextBody);
-
-            rootRef.updateChildren(messageBodyDetails).addOnCompleteListener(new OnCompleteListener() {
-                @Override
-                public void onComplete(@NonNull Task task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(ChatActivity.this, "Message Sent Successfully...", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(ChatActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                    }
-                    messageInputText.setText("");
-                }
-            });
-        }
     }
 
 }
