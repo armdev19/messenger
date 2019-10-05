@@ -70,7 +70,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private String saveCurrentTime, saveCurrentDate;
     private String formatChecker = "", fileURL = "";
-   StorageTask uploadTask;
+    private StorageTask uploadTask;
     private Uri fileUri;
     private ProgressDialog loadingBar;
 
@@ -117,6 +117,7 @@ public class ChatActivity extends AppCompatActivity {
         loadingBar = new ProgressDialog(this);
 
 
+
         Calendar calendar = Calendar.getInstance();
 
         SimpleDateFormat currentTime = new SimpleDateFormat("HH:mm");
@@ -141,7 +142,7 @@ public class ChatActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                CharSequence options[] = new CharSequence[]{
+                CharSequence[] options = new CharSequence[]{
 
                         "Images",
                         "PDF Files",
@@ -162,7 +163,7 @@ public class ChatActivity extends AppCompatActivity {
                             Intent imageIntent = new Intent();
                             imageIntent.setAction(Intent.ACTION_GET_CONTENT);
                             imageIntent.setType("image/*");
-                            startActivityForResult(imageIntent.createChooser(imageIntent, "Select Photo"), 438);
+                            startActivityForResult(Intent.createChooser(imageIntent, "Select Photo"), 438);
                         }
 
                         if (i == 1) {
@@ -214,13 +215,11 @@ public class ChatActivity extends AppCompatActivity {
 
                 final StorageReference filePath = storageReference.child(messagePushID + "." + "jpg");
 
+                uploadTask = filePath.putFile(fileUri);
 
-                Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                uploadTask.continueWithTask(new Continuation() {
                     @Override
-                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                        if (!task.isSuccessful()) {
-                            throw Objects.requireNonNull(task.getException());
-                        }
+                    public Object then(@NonNull Task task) throws Exception {
 
                         if (!task.isSuccessful()) {
 
@@ -257,14 +256,10 @@ public class ChatActivity extends AppCompatActivity {
                                     if (task.isSuccessful()) {
 
                                         loadingBar.dismiss();
-                                        Toast.makeText(ChatActivity.this, "Message Sent Successfully...",
-                                                Toast.LENGTH_SHORT).show();
-
+                                        Toast.makeText(ChatActivity.this, "Message Sent Successfully...", Toast.LENGTH_SHORT).show();
                                     } else {
-
                                         loadingBar.dismiss();
-                                        Toast.makeText(ChatActivity.this, "Error",
-                                                Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(ChatActivity.this, "Error", Toast.LENGTH_SHORT).show();
                                     }
                                     messageInputText.setText("");
                                 }
@@ -272,6 +267,8 @@ public class ChatActivity extends AppCompatActivity {
                         }
                     }
                 });
+
+
 
             } else {
 
