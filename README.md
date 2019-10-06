@@ -4,7 +4,11 @@ Messenger Demo - This application is created using the Java language with the Fi
 
 ## DEMO Messenger
 
+### A look at the user " Android developer"
+![Alt Text](https://user-images.githubusercontent.com/55914555/66272406-659db800-e87a-11e9-9396-cba1997b2695.gif)
 
+### A look at the user " Android tester"
+![Alt Text](https://user-images.githubusercontent.com/55914555/66272407-659db800-e87a-11e9-9584-1e27c65c2882.gif)
 
 
 
