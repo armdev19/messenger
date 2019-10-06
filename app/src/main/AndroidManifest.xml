@@ -35,6 +35,7 @@
         </activity>
         <activity
             android:name=".authentication.PhoneLoginActivity"
+            android:theme="@style/AppTheme.FullScreen"
             android:screenOrientation="portrait">
 
         </activity>
@@ -52,7 +53,8 @@
         <activity android:name=".authentication.RegisterActivity" />
         <activity
             android:name=".authentication.LoginActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.FullScreen">
 
 
         </activity>

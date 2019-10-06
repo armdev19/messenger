@@ -401,6 +401,7 @@ public class ChatActivity extends AppCompatActivity {
     private void sendMessage() {
         String messageText = messageInputText.getText().toString();
 
+
         if (TextUtils.isEmpty(messageText)) {
 
             Toast.makeText(this, "first write your message...", Toast.LENGTH_SHORT).show();

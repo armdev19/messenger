@@ -3,6 +3,19 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="logo_name">Messenger</string>
+    <string name="email_adress">Email...</string>
+    <string name="password">Password...</string>
+    <string name="write_phone_number">Write phone number</string>
+    <string name="forget_password">Forget password?</string>
+    <string name="log_in">Log In</string>
+    <string name="or_log_in_using_your">Or Log In using your</string>
+    <string name="phone_log_in">Phone Log In</string>
+    <string name="write_code">Write code</string>
+    <string name="registration">Registration</string>
+    <string name="save_info">Save</string>
+    <string name="username">username</string>
+    <string name="user_bio">Your BIO</string>
 
 
 </resources>

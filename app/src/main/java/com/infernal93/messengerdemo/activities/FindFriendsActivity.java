@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,11 +26,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class FindFriendsActivity extends AppCompatActivity {
 
-    private Toolbar mToolbar;
-    private RecyclerView findFriendRecView;
     private DatabaseReference UsersDatabase;
     private RecyclerView recyclerView;
 
+    @SuppressLint("CutPasteId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,12 +37,12 @@ public class FindFriendsActivity extends AppCompatActivity {
 
         UsersDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
 
-        findFriendRecView = findViewById(R.id.find_friends_recycler_list);
+        RecyclerView findFriendRecView = findViewById(R.id.find_friends_recycler_list);
         findFriendRecView.setLayoutManager(new LinearLayoutManager(this));
 
         recyclerView = findViewById(R.id.find_friends_recycler_list);
 
-        mToolbar = findViewById(R.id.find_friend_toolbar);
+        Toolbar mToolbar = findViewById(R.id.find_friend_toolbar);
         mToolbar.inflateMenu(R.menu.options_menu);
         mToolbar.setTitle("Find Friends");
         mToolbar.setNavigationIcon(R.drawable.ic_arrow_back_white_30dp);
@@ -107,7 +107,7 @@ public class FindFriendsActivity extends AppCompatActivity {
         TextView userName, userStatus;
         CircleImageView profileImage;
 
-        public FindFriendViewHolder(@NonNull View itemView) {
+        FindFriendViewHolder(@NonNull View itemView) {
             super(itemView);
 
             userName = itemView.findViewById(R.id.user_profile_name);
